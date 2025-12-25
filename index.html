@@ -905,22 +905,63 @@
           <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-<!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/mojaoonp"
-  method="POST"
+<form 
+  action="https://formspree.io/f/mojaoonp" 
+  method="POST" 
+  class="contact-form"
 >
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name">Your Name</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      placeholder="Enter your name" 
+      required
+    >
+  </div>
+
+  <!-- Email (REQUIRED for Formspree) -->
+  <div class="form-group">
+    <label for="email">Your Email</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      required
+    >
+  </div>
+
+  <!-- Message -->
+  <div class="form-group">
+    <label for="message">Your Message</label>
+    <textarea 
+      id="message" 
+      name="message" 
+      rows="5" 
+      placeholder="Enter your message" 
+      required
+    ></textarea>
+  </div>
+
+  <!-- Optional: Email Subject -->
+  <input type="hidden" name="_subject" value="New Contact Form Message">
+
+  <!-- Optional: Redirect after submit -->
+  <input type="hidden" name="_redirect" value="thankyou.html">
+
+  <!-- Optional: Spam protection (recommended) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit">
+    <i class="fas fa-paper-plane"></i> Send Message
+  </button>
+
 </form>
+
 
     </div>
   </section>
