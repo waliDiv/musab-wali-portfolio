@@ -700,6 +700,217 @@
         flex-direction: column;
       }
     }
+
+
+    
+    /* ===== FLOATING CHAT BUTTON (BOTTOM RIGHT) ===== */
+    #chatToggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #7e57c2;
+      color: white;
+      border: none;
+      font-size: 2rem;
+      box-shadow: 0 8px 25px rgba(126, 87, 194, 0.5);
+      cursor: pointer;
+      z-index: 999;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #chatToggle:hover {
+      transform: scale(1.08);
+      background: #5e35b1;
+    }
+
+    /* ===== CHAT WIDGET (SLIDE-IN) ===== */
+    #chatWidget {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 380px;
+      max-width: 90vw;
+      height: 500px;
+      max-height: 70vh;
+      background: #1c2340;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    #chatWidget.open {
+      transform: translateX(0);
+    }
+
+    /* ----- CHAT HEADER ----- */
+    .chat-header {
+      background: #2a3560;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      flex-shrink: 0;
+    }
+
+    .chat-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-header h3 i {
+      color: #7e57c2;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: #a8b2d1;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: 0.2s;
+      padding: 0 4px;
+    }
+
+    .chat-close:hover {
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    /* ----- MESSAGES AREA ----- */
+    .chat-messages {
+      flex: 1;
+      padding: 16px 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #111729;
+      min-height: 0;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #7e57c2;
+      border-radius: 10px;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      word-break: break-word;
+      animation: fadeUp 0.25s ease;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg-bot {
+      background: #2a3560;
+      color: #e8edf5;
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+    }
+
+    .msg-user {
+      background: #7e57c2;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+    }
+
+    /* ----- INPUT AREA ----- */
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      background: #1c2340;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      flex-shrink: 0;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 40px;
+      border: none;
+      background: #2a3560;
+      color: white;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .chat-input-area input::placeholder {
+      color: #8892b0;
+    }
+
+    .chat-input-area button {
+      background: #7e57c2;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-input-area button:hover {
+      background: #5e35b1;
+      transform: scale(0.95);
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 640px) {
+      #chatWidget {
+        width: 94vw;
+        right: 3vw;
+        bottom: 100px;
+        height: 60vh;
+      }
+
+      #chatToggle {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1098,9 +1309,30 @@
     </div>
   </footer>
 
-  <!-- SCROLL TO TOP -->
-  <div class="scroll-top" id="scroll-top">
-    <i class="fas fa-chevron-up"></i>
+   <!-- ===== FLOATING CHAT BUTTON ===== -->
+  <button id="chatToggle" aria-label="Open Chat Bot">
+    <i class="fas fa-robot"></i>
+  </button>
+
+  <!-- ===== CHAT WIDGET ===== -->
+  <div id="chatWidget">
+    <!-- Header -->
+    <div class="chat-header">
+      <h3><i class="fas fa-comment-dots"></i> Musab Wali · Assistant</h3>
+      <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg msg-bot">👋 Hi, I'm Musab's assistant.</div>
+      <div class="msg msg-bot">Ask about services, pricing, projects, or anything!</div>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Type your question..." autocomplete="off">
+      <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
   </div>
 
   <!-- Typed JS -->
@@ -1153,6 +1385,84 @@
     });
 
 
+  </script>
+  
+  <script>
+    // ===== CHAT BOT LOGIC =====
+    (function() {
+      const chatToggle = document.getElementById('chatToggle');
+      const chatWidget = document.getElementById('chatWidget');
+      const chatClose = document.getElementById('chatClose');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const chatSend = document.getElementById('chatSend');
+
+      // ---- Open / Close ----
+      chatToggle.addEventListener('click', () => {
+        chatWidget.classList.toggle('open');
+      });
+
+      chatClose.addEventListener('click', () => {
+        chatWidget.classList.remove('open');
+      });
+
+      // ---- Bot Knowledge Base ----
+      const botKnowledge = [
+        { keywords: ['service', 'services', 'offer', 'do you do'], reply: "I offer Web Design, Front-End Development, Graphic Design, and Responsive UI. Each is tailored to your needs." },
+        { keywords: ['price', 'pricing', 'cost', 'how much', 'rates'], reply: "Pricing: Web Design from $300, Front-End Dev from $500, Graphic Design from $150, Responsive UI from $250. Contact me for a custom quote!" },
+        { keywords: ['project', 'projects', 'portfolio', 'work'], reply: "I've built Luxury Nest Hotel, Wolf Vanguard Tyres, The Grand Horizon, NexoraDigital, Safe Driving Academy, Verizon, Nexa, and a Weather App. Check the Projects section!" },
+        { keywords: ['guide', 'help', 'advice', 'recommend'], reply: "I can guide you: For a business site, start with Web Design + Responsive UI. For a web app, go with Front-End Dev. Let me know what you need!" },
+        { keywords: ['front-end', 'frontend', 'developer', 'react'], reply: "I specialize in modern front-end: HTML5, CSS3, JavaScript, React, and responsive frameworks. I build fast, interactive UIs." },
+        { keywords: ['graphic', 'logo', 'brand', 'design'], reply: "Graphic Design: logos, banners, social media kits, brand identity. Starting at $150. I'll create a visual identity that stands out." },
+        { keywords: ['responsive', 'mobile', 'ui', 'ux'], reply: "Responsive UI: mobile-first, cross-browser, pixel-perfect. Starting at $250. I ensure your site looks great on any device." },
+        { keywords: ['hello', 'hi', 'hey'], reply: "Hello! I'm Musab's assistant. Ask me about services, pricing, projects, or any guidance." },
+        { keywords: ['thank', 'thanks'], reply: "You're welcome! If you need more details, just ask. 😊" }
+      ];
+
+      function getBotReply(userMsg) {
+        const lower = userMsg.toLowerCase().trim();
+        if (!lower) return "Please type something!";
+        for (let entry of botKnowledge) {
+          for (let kw of entry.keywords) {
+            if (lower.includes(kw)) return entry.reply;
+          }
+        }
+        return "I'm here to help! Try asking about services, pricing, projects, or guidance. Or tell me more about what you're looking for.";
+      }
+
+      // ---- Add message ----
+      function addMessage(text, sender) {
+        const div = document.createElement('div');
+        div.classList.add('msg', sender === 'bot' ? 'msg-bot' : 'msg-user');
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // ---- Send handler ----
+      function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        chatInput.value = '';
+        chatInput.focus();
+        setTimeout(() => {
+          addMessage(getBotReply(text), 'bot');
+        }, 350 + Math.random() * 300);
+      }
+
+      // ---- Event listeners ----
+      chatSend.addEventListener('click', handleSend);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSend();
+        }
+      });
+
+      // Focus input on load
+      window.addEventListener('load', () => chatInput.focus());
+    })();
   </script>
 
 </body>
