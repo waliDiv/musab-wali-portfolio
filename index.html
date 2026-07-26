@@ -301,7 +301,40 @@ a {
       transform: translateX(-50%);
       border-radius: 2px;
     }
+/* ===== SECTION TITLE WITH SUBTITLE ===== */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+}
 
+.section-title span {
+  color: var(--primary-color);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #a8b2d1;
+  margin-bottom: 60px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
    /* ===== ABOUT SECTION LAYOUT ===== */
 #about {
   padding: 100px 10%;
