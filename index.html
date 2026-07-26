@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font Awesome (for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <title>Musab Wali | Front-End Developer Portfolio</title>
   <link rel="preconnect" href="chat bot.js" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -297,58 +302,279 @@ a {
       border-radius: 2px;
     }
 
-    /* ABOUT */
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 50px;
-      flex-wrap: wrap;
-    }
-    
-    .about-text {
-      flex: 1;
-      min-width: 300px;
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-    
-    .about-text p {
-      margin-bottom: 20px;
-    }
-    
-    .skills {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .skill-item {
-      margin-bottom: 20px;
-    }
-    
-    .skill-name {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    
-    .skill-bar {
-      height: 8px;
-      background-color: #2a3255;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .skill-level {
-      height: 100%;
-      background-color: var(--primary-color);
-      border-radius: 4px;
-    }
-    
-    .html { width: 90%; }
-    .css { width: 85%; }
-    .js { width: 80%; }
-    .react { width: 75%; }
-    .ui { width: 85%; }
+   /* ===== ABOUT SECTION LAYOUT ===== */
+#about {
+  padding: 100px 10%;
+}
+
+.about-wrapper {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* ===== LEFT SIDE: IMAGE + INFO CARD ===== */
+.about-left {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.about-image-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--dark-card), var(--dark-bg));
+  padding: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.about-image-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-image-card:hover img {
+  transform: scale(1.02);
+}
+
+/* ===== GLASSMORPHISM INFO CARD ===== */
+.info-card {
+  background: rgba(28, 35, 64, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 25px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(126, 87, 194, 0.15);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-item .icon {
+  width: 38px;
+  height: 38px;
+  background: rgba(126, 87, 194, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.info-item .text {
+  font-size: 0.85rem;
+}
+
+.info-item .text .label {
+  color: #8892b0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-item .text .value {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ===== RIGHT SIDE: GLASS CARD ===== */
+.about-right {
+  flex: 1.5;
+  min-width: 300px;
+}
+
+.about-right .glass-card {
+  background: rgba(28, 35, 64, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 40px 45px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.about-right .glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(126, 87, 194, 0.12);
+}
+
+/* ===== COMPACT BIO ===== */
+.about-right .bio {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #e8edf5;
+  margin-bottom: 25px;
+}
+
+.about-right .bio-highlight {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* ===== BIO POINTS (BULLET LIST) ===== */
+.about-right .bio-points {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin-bottom: 30px;
+}
+
+.about-right .bio-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #ccd6f6;
+}
+
+.about-right .bio-points li i {
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+
+/* ===== SKILLS WITH ICONS & ANIMATED BARS ===== */
+.skills-container {
+  margin-top: 10px;
+}
+
+.skills-container .skill-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ccd6f6;
+  margin-bottom: 15px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.skill-item-modern {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.skill-item-modern:hover {
+  background: rgba(126, 87, 194, 0.08);
+  transform: translateX(5px);
+}
+
+.skill-item-modern .skill-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(126, 87, 194, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.skill-item-modern .skill-info {
+  flex: 1;
+}
+
+.skill-item-modern .skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* ===== ANIMATED PROGRESS BAR WITH GRADIENT & GLOW ===== */
+.skill-bar-modern {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 4px;
+  position: relative;
+}
+
+.skill-bar-modern .skill-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 12px rgba(126, 87, 194, 0.3);
+  position: relative;
+}
+
+.skill-bar-modern .skill-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 10px;
+  height: 9px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(126, 87, 194, 0.6);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 992px) {
+  .about-wrapper {
+    flex-direction: column;
+  }
+  .about-right .bio-points {
+    grid-template-columns: 1fr;
+  }
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+  .about-right .glass-card {
+    padding: 25px 20px;
+  }
+  .info-card {
+    grid-template-columns: 1fr;
+  }
+  #about {
+    padding: 80px 5%;
+  }
+}
 
     /* SERVICES */
     .services-container {
@@ -1021,46 +1247,155 @@ a {
   </section>
 
   <!-- ABOUT -->
-  <section id="about">
-    <h1 class="section-title">About Me</h1>
-    <div class="about-content">
-      <div class="about-text">
-        <p>I am Musab, a dedicated Front‑End Developer specializing in HTML, CSS, JavaScript, and modern UI development. My passion is creating attractive and responsive websites that provide excellent user experiences.</p>
-        <p>With over 3 years of experience in web development, I've worked on various projects ranging from simple landing pages to complex web applications. I'm constantly learning new technologies and improving my skills to stay up-to-date with the latest trends in web development.</p>
-        <p>When I'm not coding, you can find me exploring new design trends, reading tech blogs, or contributing to open-source projects.</p>
+<!-- ===== ABOUT SECTION (IMPROVED) ===== -->
+<section id="about">
+  <h1 class="section-title">About <span>Me</span></h1>
+  <p class="section-subtitle">Passionate Front-End Developer crafting modern web experiences</p>
+
+  <div class="about-wrapper">
+    <!-- LEFT SIDE: Image + Info Card -->
+    <div class="about-left" data-aos="fade-right" data-aos-duration="800">
+      <!-- Profile Image -->
+      <div class="about-image-card">
+        <img src="WhatsApp Image 2026-07-25 at 11.23.07 AM.jpeg" alt="Musab Wali - Profile" />
       </div>
-      <div class="skills">
-        <div class="skill-item">
-          <div class="skill-name">
-            <span>HTML/CSS</span>
-            <span>90%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-level html"></div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">
-            <span>JavaScript</span>
-            <span>80%</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-level js"></div>
+
+      <!-- Glassmorphism Info Card -->
+      <div class="info-card">
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="text">
+            <div class="label">Location</div>
+            <div class="value">Gilgit, Pakistan</div>
           </div>
         </div>
-        
-        <div class="skill-item">
-          <div class="skill-name">
-            <span>UI/UX Design</span>
-            <span>85%</span>
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="text">
+            <div class="label">Education</div>
+            <div class="value">BS Computer Science</div>
           </div>
-          <div class="skill-bar">
-            <div class="skill-level ui"></div>
+        </div>
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-briefcase"></i></div>
+          <div class="text">
+            <div class="label">Experience</div>
+            <div class="value">3+ Years</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-envelope"></i></div>
+          <div class="text">
+            <div class="label">Email</div>
+            <div class="value">musabwali40@example.com</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-globe"></i></div>
+          <div class="text">
+            <div class="label">Languages</div>
+            <div class="value">Urdu, English</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+          <div class="text">
+            <div class="label">Availability</div>
+            <div class="value">Open to Work</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- RIGHT SIDE: Bio + Skills -->
+    <div class="about-right" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
+      <div class="glass-card">
+        <!-- Compact Bio -->
+        <p class="bio">
+          Hi, I'm <span class="bio-highlight">Musab Wali</span>, a Front-End Developer with 
+          <span class="bio-highlight">3+ years</span> of experience building modern, responsive, 
+          and user-friendly websites using <span class="bio-highlight">HTML, CSS, JavaScript, and React</span>. 
+          I focus on creating fast, accessible, and visually appealing web experiences.
+        </p>
+
+        <!-- Bio Points -->
+        <ul class="bio-points">
+          <li><i class="fas fa-check-circle"></i> 20+ Projects Delivered</li>
+          <li><i class="fas fa-check-circle"></i> 30+ Happy Clients</li>
+          <li><i class="fas fa-check-circle"></i> 98% Client Satisfaction</li>
+          <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+        </ul>
+
+        <!-- Skills with Icons & Animated Bars -->
+        <div class="skills-container">
+          <div class="skill-label"><i class="fas fa-code"></i> Technical Skills</div>
+          <div class="skill-grid">
+            <!-- HTML5 -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-html5"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">HTML5</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- CSS3 -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">CSS3</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- JavaScript -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-js"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- React -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-react"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">React</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 75%;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Bootstrap -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">Bootstrap</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 82%;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Git -->
+            <div class="skill-item-modern">
+              <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+              <div class="skill-info">
+                <div class="skill-name">Git</div>
+                <div class="skill-bar-modern">
+                  <div class="skill-fill" style="width: 78%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- SERVICES -->
   <section id="services">
@@ -1535,7 +1870,37 @@ a {
       window.addEventListener('load', () => chatInput.focus());
     })();
   </script>
+  <!-- AOS Animation Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 100,
+  });
+
+  // Skill Bar Animation on Scroll
+  const skillFills = document.querySelectorAll('.skill-fill');
   
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        fill.style.transition = 'width 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+        void fill.offsetWidth; // Force reflow
+      }
+    });
+  }, observerOptions);
+
+  skillFills.forEach(fill => skillObserver.observe(fill));
+</script>
 
 </body>
 </html>
