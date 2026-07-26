@@ -608,76 +608,256 @@ a {
     padding: 80px 5%;
   }
 }
+ /* ===== SECTION WRAPPER ===== */
+    .services-section {
+      max-width: 1300px;
+      width: 100%;
+    }
 
-    /* SERVICES */
-    .services-container {
+    /* ===== HEADING ===== */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-heading h2 span {
+      color: #7e57c2;
+    }
+
+    .section-heading p {
+      font-size: 1.15rem;
+      color: #a8b2d1;
+      margin-top: 12px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .section-heading::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #7e57c2, #03dac5);
+      margin: 18px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ===== GRID ===== */
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 30px;
     }
-    
-    .service-card {
-      background-color: var(--dark-card);
-      padding: 40px 25px;
-      border-radius: 12px;
-      text-align: center;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 0;
-      background-color: var(--primary-color);
-      bottom: 0;
-      left: 0;
-      transition: var(--transition);
-      z-index: -1;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    .service-card:hover::before {
-      height: 100%;
-    }
-    
-    .service-card i {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-    
-    .service-card:hover i {
-      color: var(--white);
-    }
-    
-    .service-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      transition: var(--transition);
-    }
-    
-    .service-card:hover h3 {
-      color: var(--white);
-    }
-    
-    .service-card p {
-      color: #a8b2d1;
-      transition: var(--transition);
-    }
-    
-    .service-card:hover p {
-      color: var(--white);
+
+    /* ===== FLIP CARD ===== */
+    .flip-card {
+      perspective: 1200px;
+      height: 420px;
+      cursor: pointer;
     }
 
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+    }
+
+    /* Active class for click-to-flip */
+    .flip-card.active .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* ===== FRONT & BACK ===== */
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(28, 35, 64, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      overflow: hidden;
+    }
+
+    /* Glow on hover (both sides) */
+    .flip-card:hover .flip-card-front,
+    .flip-card:hover .flip-card-back {
+      border-color: rgba(126, 87, 194, 0.4);
+      box-shadow: 0 20px 50px rgba(126, 87, 194, 0.15);
+    }
+
+    /* ===== FRONT SIDE ===== */
+    .flip-card-front {
+      background: linear-gradient(145deg, rgba(28, 35, 64, 0.75), rgba(10, 15, 36, 0.9));
+    }
+
+    .flip-card-front .icon {
+      font-size: 3rem;
+      color: #ffffff;
+      background: rgba(126, 87, 194, 0.15);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: 0.3s ease;
+    }
+
+    .flip-card:hover .flip-card-front .icon {
+      background: rgba(126, 87, 194, 0.25);
+      transform: scale(1.05);
+    }
+
+    .flip-card-front h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .flip-card-front .sub {
+      font-size: 0.95rem;
+      color: #a8b2d1;
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+
+    .flip-card-front .flip-hint {
+      font-size: 0.75rem;
+      color: #6b7a9f;
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+
+    .flip-card:hover .flip-card-front .flip-hint {
+      opacity: 1;
+      color: #7e57c2;
+    }
+
+    /* ===== BACK SIDE ===== */
+    .flip-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, rgba(20, 28, 58, 0.9), rgba(10, 15, 36, 0.95));
+      justify-content: flex-start;
+      padding-top: 40px;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .flip-card-back h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flip-card-back h4 i {
+      color: #7e57c2;
+      font-size: 1.1rem;
+    }
+
+    .flip-card-back ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+
+    .flip-card-back ul li {
+      font-size: 0.9rem;
+      color: #ccd6f6;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flip-card-back ul li i {
+      color: #7e57c2;
+      font-size: 0.7rem;
+      width: 16px;
+      text-align: center;
+    }
+
+    .flip-card-back .back-footer {
+      margin-top: auto;
+      font-size: 0.85rem;
+      color: #8892b0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 14px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flip-card-back .back-footer a {
+      color: #7e57c2;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.3s;
+    }
+
+    .flip-card-back .back-footer a:hover {
+      color: #03dac5;
+      gap: 10px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .section-heading h2 {
+        font-size: 2.2rem;
+      }
+
+      .flip-card {
+        height: 400px;
+      }
+    }
     /* PROJECTS */
     .projects-container {
       display: grid;
@@ -1431,33 +1611,134 @@ a {
   </div>
 </section>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <h1 class="section-title">Services</h1>
-    <div class="services-container">
-      <div class="service-card">
-        <i class="fas fa-laptop-code"></i>
-        <h3>Web Design</h3>
-        <p>Creating visually appealing and user-friendly website designs that align with your brand identity and business goals.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-code"></i>
-        <h3>Front-End Development</h3>
-        <p>Building responsive, interactive websites using modern technologies like HTML5, CSS3, JavaScript, and React.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-palette"></i>
-        <h3>Graphic Designing</h3>
-        <p>Designing logos, banners, and other visual elements that enhance your brand's visual identity.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-mobile-alt"></i>
-        <h3>Responsive UI</h3>
-        <p>Ensuring your website looks great and functions perfectly on all devices, from desktops to smartphones.</p>
-      </div>
-    </div>
-  </section>
+ 
+  <section class="services-section">
 
+    <!-- ===== HEADING ===== -->
+    <div class="section-heading">
+      <h2>My <span>Services</span></h2>
+      <p>Professional solutions to build modern, responsive and high-performance websites.</p>
+    </div>
+
+    <!-- ===== GRID ===== -->
+    <div class="services-grid">
+
+      <!-- 1. Front-End Development -->
+      <div class="flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <!-- FRONT -->
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-code"></i></div>
+            <h3>Front-End Development</h3>
+            <div class="sub">Building fast &amp; responsive web applications.</div>
+            <div class="flip-hint"><i class="fas fa-arrow-right"></i> Click to flip</div>
+          </div>
+          <!-- BACK -->
+          <div class="flip-card-back">
+            <h4><i class="fas fa-code"></i> Front-End Development</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> React.js</li>
+              <li><i class="fas fa-check-circle"></i> JavaScript (ES6+)</li>
+              <li><i class="fas fa-check-circle"></i> HTML5 &amp; CSS3</li>
+              <li><i class="fas fa-check-circle"></i> Tailwind CSS</li>
+              <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+              <li><i class="fas fa-check-circle"></i> API Integration</li>
+              <li><i class="fas fa-check-circle"></i> Cross-Browser Compatibility</li>
+            </ul>
+            <div class="back-footer">
+              <span>I build modern, scalable and responsive websites.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. UI/UX Design -->
+      <div class="flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-palette"></i></div>
+            <h3>UI/UX Design</h3>
+            <div class="sub">Creating clean and user-friendly interfaces.</div>
+            <div class="flip-hint"><i class="fas fa-arrow-right"></i> Click to flip</div>
+          </div>
+          <div class="flip-card-back">
+            <h4><i class="fas fa-palette"></i> UI/UX Design</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Wireframing</li>
+              <li><i class="fas fa-check-circle"></i> Modern UI Design</li>
+              <li><i class="fas fa-check-circle"></i> User Experience</li>
+              <li><i class="fas fa-check-circle"></i> Color System</li>
+              <li><i class="fas fa-check-circle"></i> Typography</li>
+              <li><i class="fas fa-check-circle"></i> Figma Design</li>
+              <li><i class="fas fa-check-circle"></i> Mobile-First Layout</li>
+            </ul>
+            <div class="back-footer">
+              <span>I design clean, intuitive and beautiful interfaces.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Responsive Web Design -->
+      <div class="flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Responsive Web Design</h3>
+            <div class="sub">Websites optimized for every device.</div>
+            <div class="flip-hint"><i class="fas fa-arrow-right"></i> Click to flip</div>
+          </div>
+          <div class="flip-card-back">
+            <h4><i class="fas fa-mobile-alt"></i> Responsive Web Design</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Mobile</li>
+              <li><i class="fas fa-check-circle"></i> Tablet</li>
+              <li><i class="fas fa-check-circle"></i> Desktop</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Grid</li>
+              <li><i class="fas fa-check-circle"></i> CSS Flexbox</li>
+              <li><i class="fas fa-check-circle"></i> CSS Grid</li>
+              <li><i class="fas fa-check-circle"></i> Performance Optimization</li>
+            </ul>
+            <div class="back-footer">
+              <span>Every device gets the perfect experience.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Website Optimization -->
+      <div class="flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-rocket"></i></div>
+            <h3>Website Optimization</h3>
+            <div class="sub">Faster, SEO-friendly and optimized websites.</div>
+            <div class="flip-hint"><i class="fas fa-arrow-right"></i> Click to flip</div>
+          </div>
+          <div class="flip-card-back">
+            <h4><i class="fas fa-rocket"></i> Website Optimization</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Page Speed</li>
+              <li><i class="fas fa-check-circle"></i> SEO Basics</li>
+              <li><i class="fas fa-check-circle"></i> Image Optimization</li>
+              <li><i class="fas fa-check-circle"></i> Clean Code</li>
+              <li><i class="fas fa-check-circle"></i> Accessibility</li>
+              <li><i class="fas fa-check-circle"></i> Lazy Loading</li>
+              <li><i class="fas fa-check-circle"></i> Best Practices</li>
+            </ul>
+            <div class="back-footer">
+              <span>Fast, accessible and SEO-ready websites.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </section>
   <!-- PROJECTS -->
   <section id="projects">
     <h1 class="section-title">Projects</h1>
@@ -1826,6 +2107,16 @@ a {
     });
 
 
+  </script>
+   <script>
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Close other cards when this one is opened
+        document.querySelectorAll('.flip-card').forEach(c => {
+          if (c !== this) c.classList.remove('active');
+        });
+      });
+    });
   </script>
   <script>
         // ===== CHAT BOT LOGIC =====
