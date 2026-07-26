@@ -608,25 +608,109 @@ a {
     padding: 80px 5%;
   }
 }
-    /* SERVICES */
+       /* ===== SECTION ===== */
+    section {
+      padding: 100px 10%;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #ffffff;
+      position: relative;
+    }
+
+    .section-title span {
+      color: var(--primary-color);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #a8b2d1;
+      margin-bottom: 60px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* ===== SERVICES - FLIP CARDS ===== */
     .services-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
-    
+
     .service-card {
       background-color: var(--dark-card);
-      padding: 40px 25px;
+      padding: 0;
       border-radius: 12px;
       text-align: center;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
       z-index: 1;
+      cursor: pointer;
+      height: 380px;
+      perspective: 1200px;
     }
-    
-    .service-card::before {
+
+    /* Hover effect - card moves up */
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Flip card inner */
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+    }
+
+    .service-card.active .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Front & Back */
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      padding: 40px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: var(--dark-card);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Front side background with gradient */
+    .flip-card-front::before {
       content: '';
       position: absolute;
       width: 100%;
@@ -637,44 +721,153 @@ a {
       transition: var(--transition);
       z-index: -1;
     }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    .service-card:hover::before {
+
+    .service-card:hover .flip-card-front::before {
       height: 100%;
     }
-    
-    .service-card i {
+
+    .flip-card-front i {
       font-size: 2.5rem;
       color: var(--primary-color);
       margin-bottom: 20px;
       transition: var(--transition);
     }
-    
-    .service-card:hover i {
+
+    .service-card:hover .flip-card-front i {
       color: var(--white);
     }
-    
-    .service-card h3 {
+
+    .flip-card-front h3 {
       font-size: 1.4rem;
       margin-bottom: 15px;
       transition: var(--transition);
     }
-    
-    .service-card:hover h3 {
+
+    .service-card:hover .flip-card-front h3 {
       color: var(--white);
     }
-    
-    .service-card p {
+
+    .flip-card-front p {
       color: #a8b2d1;
       transition: var(--transition);
     }
-    
-    .service-card:hover p {
+
+    .service-card:hover .flip-card-front p {
       color: var(--white);
+    }
+
+    .flip-hint {
+      font-size: 0.7rem;
+      color: #6b7a9f;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.6;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .flip-hint {
+      opacity: 1;
+      color: var(--primary-color);
+    }
+
+    /* ===== BACK SIDE ===== */
+    .flip-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, #1c2340, #0a0f24);
+      justify-content: flex-start;
+      padding-top: 35px;
+      text-align: left;
+      align-items: flex-start;
+      border: 1px solid rgba(126, 87, 194, 0.2);
+    }
+
+    .flip-card-back h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flip-card-back h3 i {
+      color: var(--primary-color);
+      font-size: 1rem;
+    }
+
+    .flip-card-back ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .flip-card-back ul li {
+      font-size: 0.85rem;
+      color: #ccd6f6;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flip-card-back ul li i {
+      color: var(--primary-color);
+      font-size: 0.7rem;
+      width: 16px;
+      text-align: center;
+    }
+
+    .flip-card-back .back-footer {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: #8892b0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 12px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flip-card-back .back-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .flip-card-back .back-footer a:hover {
+      color: var(--secondary-color);
+      gap: 10px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      section {
+        padding: 80px 5%;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .service-card {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .services-container {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* PROJECTS */
@@ -1431,31 +1624,125 @@ a {
 </section>
 
  
- <!-- SERVICES -->
-  <section id="services">
-    <h1 class="section-title">Services</h1>
+ <!-- ===== HEADING ===== -->
+    <h1 id="services" class="section-title">My <span>Services</span></h1>
+  <br>
+    <p class="section-subtitle">Professional solutions to build modern, responsive and high-performance websites.</p>
+
+    <!-- ===== GRID ===== -->
     <div class="services-container">
-      <div class="service-card">
-        <i class="fas fa-laptop-code"></i>
-        <h3>Web Design</h3>
-        <p>Creating visually appealing and user-friendly website designs that align with your brand identity and business goals.</p>
+
+      <!-- 1. Front-End Development -->
+      <div class="service-card flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <!-- FRONT -->
+          <div class="flip-card-front">
+            <i class="fas fa-code"></i>
+            <h3>Front-End Development</h3>
+            <p>Building fast &amp; responsive web applications.</p>
+            <span class="flip-hint"><i class="fas fa-rotate-right"></i> Click to flip</span>
+          </div>
+          <!-- BACK -->
+          <div class="flip-card-back">
+            <h3><i class="fas fa-code"></i> Front-End Development</h3>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> React.js</li>
+              <li><i class="fas fa-check-circle"></i> JavaScript (ES6+)</li>
+              <li><i class="fas fa-check-circle"></i> HTML5 &amp; CSS3</li>
+              <li><i class="fas fa-check-circle"></i> Tailwind CSS</li>
+              <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+              <li><i class="fas fa-check-circle"></i> API Integration</li>
+            </ul>
+            <div class="back-footer">
+              <span>I build modern, scalable websites.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <i class="fas fa-code"></i>
-        <h3>Front-End Development</h3>
-        <p>Building responsive, interactive websites using modern technologies like HTML5, CSS3, JavaScript, and React.</p>
+
+      <!-- 2. UI/UX Design -->
+      <div class="service-card flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fas fa-palette"></i>
+            <h3>UI/UX Design</h3>
+            <p>Creating clean and user-friendly interfaces.</p>
+            <span class="flip-hint"><i class="fas fa-rotate-right"></i> Click to flip</span>
+          </div>
+          <div class="flip-card-back">
+            <h3><i class="fas fa-palette"></i> UI/UX Design</h3>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Wireframing</li>
+              <li><i class="fas fa-check-circle"></i> Modern UI Design</li>
+              <li><i class="fas fa-check-circle"></i> User Experience</li>
+              <li><i class="fas fa-check-circle"></i> Color System</li>
+              <li><i class="fas fa-check-circle"></i> Typography</li>
+              <li><i class="fas fa-check-circle"></i> Figma Design</li>
+            </ul>
+            <div class="back-footer">
+              <span>I design clean &amp; beautiful interfaces.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <i class="fas fa-palette"></i>
-        <h3>Graphic Designing</h3>
-        <p>Designing logos, banners, and other visual elements that enhance your brand's visual identity.</p>
+
+      <!-- 3. Responsive Web Design -->
+      <div class="service-card flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Responsive Web Design</h3>
+            <p>Websites optimized for every device.</p>
+            <span class="flip-hint"><i class="fas fa-rotate-right"></i> Click to flip</span>
+          </div>
+          <div class="flip-card-back">
+            <h3><i class="fas fa-mobile-alt"></i> Responsive Web Design</h3>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Mobile First</li>
+              <li><i class="fas fa-check-circle"></i> Tablet &amp; Desktop</li>
+              <li><i class="fas fa-check-circle"></i> CSS Flexbox &amp; Grid</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Grid System</li>
+              <li><i class="fas fa-check-circle"></i> Cross-Browser Testing</li>
+              <li><i class="fas fa-check-circle"></i> Performance Optimization</li>
+            </ul>
+            <div class="back-footer">
+              <span>Perfect experience on every device.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <i class="fas fa-mobile-alt"></i>
-        <h3>Responsive UI</h3>
-        <p>Ensuring your website looks great and functions perfectly on all devices, from desktops to smartphones.</p>
+
+      <!-- 4. Website Optimization -->
+      <div class="service-card flip-card" onclick="this.classList.toggle('active')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fas fa-rocket"></i>
+            <h3>Website Optimization</h3>
+            <p>Faster, SEO-friendly and optimized websites.</p>
+            <span class="flip-hint"><i class="fas fa-rotate-right"></i> Click to flip</span>
+          </div>
+          <div class="flip-card-back">
+            <h3><i class="fas fa-rocket"></i> Website Optimization</h3>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Page Speed Optimization</li>
+              <li><i class="fas fa-check-circle"></i> SEO Best Practices</li>
+              <li><i class="fas fa-check-circle"></i> Image Optimization</li>
+              <li><i class="fas fa-check-circle"></i> Clean &amp; Semantic Code</li>
+              <li><i class="fas fa-check-circle"></i> Accessibility (WCAG)</li>
+              <li><i class="fas fa-check-circle"></i> Lazy Loading</li>
+            </ul>
+            <div class="back-footer">
+              <span>Fast, accessible &amp; SEO-ready websites.</span>
+              <a href="#projects">View Projects →</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+    </div><!-- /grid -->
   </section>
 
   <!-- PROJECTS -->
@@ -1827,16 +2114,17 @@ a {
 
 
   </script>
-   <script>
+ <script>
+    // Auto-close other cards when one opens
     document.querySelectorAll('.flip-card').forEach(card => {
       card.addEventListener('click', function(e) {
-        // Close other cards when this one is opened
         document.querySelectorAll('.flip-card').forEach(c => {
           if (c !== this) c.classList.remove('active');
         });
       });
     });
   </script>
+
   <script>
         // ===== CHAT BOT LOGIC =====
     (function() {
